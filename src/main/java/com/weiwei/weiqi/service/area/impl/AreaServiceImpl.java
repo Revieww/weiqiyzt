@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.weiwei.common.constants.enums.ResultCodeEnum;
 import com.weiwei.weiqi.jdbc.dao.area.CityDao;
 import com.weiwei.weiqi.jdbc.dao.area.ProvinceDao;
-import com.weiwei.weiqi.jdbc.dbmodel.area.City;
+import com.weiwei.weiqi.jdbc.dbmodel.area.Cities;
 import com.weiwei.weiqi.jdbc.dbmodel.area.Province;
 import com.weiwei.weiqi.request.area.GetCityListEnter;
 import com.weiwei.weiqi.response.area.CityBean;
@@ -33,9 +33,9 @@ public class AreaServiceImpl extends BaseServiceImpl implements AreaService {
 	public GeneralResult getCityList(GetCityListEnter cityListEnter) {
 		List<CityBean> beanList = new ArrayList<CityBean>();
 
-		List<City> citiesList = iAreaDao.findCityListByProvinceId(cityListEnter.getProvinceId());
+		List<Cities> citiesList = iAreaDao.findCityListByProvinceId(cityListEnter.getProvinceId());
 		if (!citiesList.isEmpty()) {
-			for (City city : citiesList) {
+			for (Cities city : citiesList) {
 				CityBean bean = new CityBean();
 				BeanUtils.copyProperties(city, bean);
 				bean.setCityd(city.getId());

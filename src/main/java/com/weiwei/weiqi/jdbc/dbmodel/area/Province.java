@@ -22,7 +22,7 @@ public class Province {
 	public String provinceName;
 	
 	@OneToMany(mappedBy="province", fetch = FetchType.LAZY)
-	private List<City> cities;
+	private List<Cities> cities;
 	
 	public int getId() {
 		return id;
@@ -36,10 +36,10 @@ public class Province {
 	public void setProvinceName(String provinceName) {
 		this.provinceName = provinceName;
 	}
-	public List<City> getCities() {
+	public List<Cities> getCities() {
 		return cities;
 	}
-	public void setCities(List<City> cities) {
+	public void setCities(List<Cities> cities) {
 		this.cities = cities;
 	}
 	
