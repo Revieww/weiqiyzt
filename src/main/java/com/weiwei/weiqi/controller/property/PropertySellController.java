@@ -10,34 +10,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.weiwei.weiqi.annotation.AccessControl;
 import com.weiwei.weiqi.request.base.BaseEnter;
 import com.weiwei.weiqi.request.base.MyPageRequest;
-import com.weiwei.weiqi.request.patented.ListEnter;
 import com.weiwei.weiqi.request.property.LendDetailEnter;
 import com.weiwei.weiqi.request.property.LendListEnter;
 import com.weiwei.weiqi.request.property.LendSaveEnter;
 import com.weiwei.weiqi.response.base.GeneralResult;
 import com.weiwei.weiqi.service.property.api.PropertyLendService;
+import com.weiwei.weiqi.service.property.api.PropertySellService;
 
 @AccessControl(noSessionLogin = true)
 @RestController
-@RequestMapping("/property/lend")
-public class PropertyLendController {
+@RequestMapping("/property/sell")
+public class PropertySellController {
 
 	@Autowired
-	private PropertyLendService propertyLendService;
-	
+	private PropertySellService propertySellService;
 	
 	@PostMapping("/save")
 	public GeneralResult save(@RequestBody LendSaveEnter saveEnter,BaseEnter baseEnter){
-		return propertyLendService.save(saveEnter,baseEnter);
+		return propertySellService.save(saveEnter,baseEnter);
 	}
 	
 	@GetMapping("/list")
 	public GeneralResult list(MyPageRequest request,LendListEnter listEnter){
-		return propertyLendService.list(request,listEnter);
+		return propertySellService.list(request,listEnter);
 	}
 	
 	@GetMapping("/detail")
 	public GeneralResult detail(LendDetailEnter detailEnter){
-		return propertyLendService.detail(detailEnter);
+		return propertySellService.detail(detailEnter);
 	}
 }

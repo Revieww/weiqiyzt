@@ -2,8 +2,13 @@ package com.weiwei.weiqi.jdbc.dbmodel.property;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,11 +20,20 @@ import javax.persistence.Table;
 public class PropertyFavoriteLend implements java.io.Serializable {
 
 	// Fields
-
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
+	
+	@Column(name = "customer_id")
 	private Integer customerId;
-	private Integer propertyLendId;
+	
+	@Column(name = "is_cancelled")
 	private Boolean isCancelled;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="property_lend_id")
+	private PropertyLend propertyLend;
 
 	// Constructors
 
@@ -27,17 +41,10 @@ public class PropertyFavoriteLend implements java.io.Serializable {
 	public PropertyFavoriteLend() {
 	}
 
-	/** full constructor */
-	public PropertyFavoriteLend(Integer customerId, Integer propertyLendId, Boolean isCancelled) {
-		this.customerId = customerId;
-		this.propertyLendId = propertyLendId;
-		this.isCancelled = isCancelled;
-	}
+
 
 	// Property accessors
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	
 	public Integer getId() {
 		return this.id;
 	}
@@ -46,7 +53,7 @@ public class PropertyFavoriteLend implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "customer_id")
+	
 	public Integer getCustomerId() {
 		return this.customerId;
 	}
@@ -55,16 +62,7 @@ public class PropertyFavoriteLend implements java.io.Serializable {
 		this.customerId = customerId;
 	}
 
-	@Column(name = "property_lend_id")
-	public Integer getPropertyLendId() {
-		return this.propertyLendId;
-	}
-
-	public void setPropertyLendId(Integer propertyLendId) {
-		this.propertyLendId = propertyLendId;
-	}
-
-	@Column(name = "is_cancelled")
+	
 	public Boolean getIsCancelled() {
 		return this.isCancelled;
 	}
@@ -73,4 +71,16 @@ public class PropertyFavoriteLend implements java.io.Serializable {
 		this.isCancelled = isCancelled;
 	}
 
+
+
+	public PropertyLend getPropertyLend() {
+		return propertyLend;
+	}
+
+
+
+	public void setPropertyLend(PropertyLend propertyLend) {
+		this.propertyLend = propertyLend;
+	}
+	
 }

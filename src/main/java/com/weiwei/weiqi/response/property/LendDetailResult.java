@@ -2,14 +2,20 @@ package com.weiwei.weiqi.response.property;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-
-public class LendResult {
+public class LendDetailResult {
+	private Integer id;
 	private Integer area;
 	private Integer levels;
 	private Integer askPrice;
+	private String categoryName;
 	private String description;
 	private Timestamp submitTime;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Integer getArea() {
 		return area;
 	}
@@ -27,6 +33,12 @@ public class LendResult {
 	}
 	public void setAskPrice(Integer askPrice) {
 		this.askPrice = askPrice;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public String getDescription() {
 		return description;

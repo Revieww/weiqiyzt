@@ -2,8 +2,13 @@ package com.weiwei.weiqi.jdbc.dbmodel.property;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,11 +20,20 @@ import javax.persistence.Table;
 public class PropertyFavoriteSell implements java.io.Serializable {
 
 	// Fields
-
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
+
+	@Column(name = "customer_id")
 	private Integer customerId;
-	private Integer propertySellId;
+
+	@Column(name = "is_cancelled")
 	private Boolean isCancelled;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "property_sell_id")
+	private PropertyLend propertyLend;
 
 	// Constructors
 
@@ -27,50 +41,38 @@ public class PropertyFavoriteSell implements java.io.Serializable {
 	public PropertyFavoriteSell() {
 	}
 
-	/** full constructor */
-	public PropertyFavoriteSell(Integer customerId, Integer propertySellId, Boolean isCancelled) {
-		this.customerId = customerId;
-		this.propertySellId = propertySellId;
-		this.isCancelled = isCancelled;
-	}
-
-	// Property accessors
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	@Column(name = "customer_id")
 	public Integer getCustomerId() {
-		return this.customerId;
+		return customerId;
 	}
 
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 
-	@Column(name = "property_sell_id")
-	public Integer getPropertySellId() {
-		return this.propertySellId;
-	}
-
-	public void setPropertySellId(Integer propertySellId) {
-		this.propertySellId = propertySellId;
-	}
-
-	@Column(name = "is_cancelled")
 	public Boolean getIsCancelled() {
-		return this.isCancelled;
+		return isCancelled;
 	}
 
 	public void setIsCancelled(Boolean isCancelled) {
 		this.isCancelled = isCancelled;
 	}
+
+	public PropertyLend getPropertyLend() {
+		return propertyLend;
+	}
+
+	public void setPropertyLend(PropertyLend propertyLend) {
+		this.propertyLend = propertyLend;
+	}
+	
+	
 
 }

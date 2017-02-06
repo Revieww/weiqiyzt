@@ -1,10 +1,16 @@
 package com.weiwei.weiqi.jdbc.dbmodel.property;
 
 import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,39 +22,48 @@ import javax.persistence.Table;
 public class PropertyLend implements java.io.Serializable {
 
 	// Fields
-
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
+	
+	@Column(name = "region_id")
 	private Integer regionId;
-	private Integer categoryId;
+	
+//	@Column(name = "category_id")
+//	private Integer categoryId;
+	
+	@Column(name = "area")
 	private Integer area;
+	
+	@Column(name = "levels")
 	private Integer levels;
+	
+	@Column(name = "ask_price")
 	private Integer askPrice;
+	
+	@Column(name = "description", length = 500)
 	private String description;
+	
+	@Column(name = "submit_time", length = 0)
 	private Timestamp submitTime;
+	
+	@Column(name = "customer_id")
 	private Integer customerId;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="category_id")
+	private PropertyCategory category;
+	
 	// Constructors
 
 	/** default constructor */
 	public PropertyLend() {
 	}
 
-	/** full constructor */
-	public PropertyLend(Integer regionId, Integer categoryId, Integer area, Integer levels, Integer askPrice, String description, Timestamp submitTime, Integer customerId) {
-		this.regionId = regionId;
-		this.categoryId = categoryId;
-		this.area = area;
-		this.levels = levels;
-		this.askPrice = askPrice;
-		this.description = description;
-		this.submitTime = submitTime;
-		this.customerId = customerId;
-	}
 
 	// Property accessors
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	
 	public Integer getId() {
 		return this.id;
 	}
@@ -57,7 +72,7 @@ public class PropertyLend implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "region_id")
+	
 	public Integer getRegionId() {
 		return this.regionId;
 	}
@@ -66,16 +81,6 @@ public class PropertyLend implements java.io.Serializable {
 		this.regionId = regionId;
 	}
 
-	@Column(name = "category_id")
-	public Integer getCategoryId() {
-		return this.categoryId;
-	}
-
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	@Column(name = "area")
 	public Integer getArea() {
 		return this.area;
 	}
@@ -84,7 +89,7 @@ public class PropertyLend implements java.io.Serializable {
 		this.area = area;
 	}
 
-	@Column(name = "levels")
+	
 	public Integer getLevels() {
 		return this.levels;
 	}
@@ -93,7 +98,7 @@ public class PropertyLend implements java.io.Serializable {
 		this.levels = levels;
 	}
 
-	@Column(name = "ask_price")
+	
 	public Integer getAskPrice() {
 		return this.askPrice;
 	}
@@ -102,7 +107,7 @@ public class PropertyLend implements java.io.Serializable {
 		this.askPrice = askPrice;
 	}
 
-	@Column(name = "description", length = 500)
+	
 	public String getDescription() {
 		return this.description;
 	}
@@ -111,7 +116,7 @@ public class PropertyLend implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "submit_time", length = 0)
+	
 	public Timestamp getSubmitTime() {
 		return this.submitTime;
 	}
@@ -120,7 +125,7 @@ public class PropertyLend implements java.io.Serializable {
 		this.submitTime = submitTime;
 	}
 
-	@Column(name = "customer_id")
+	
 	public Integer getCustomerId() {
 		return this.customerId;
 	}
@@ -129,4 +134,14 @@ public class PropertyLend implements java.io.Serializable {
 		this.customerId = customerId;
 	}
 
+
+	public PropertyCategory getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(PropertyCategory category) {
+		this.category = category;
+	}
+	
 }

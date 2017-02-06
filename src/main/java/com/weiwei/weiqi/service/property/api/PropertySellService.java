@@ -7,12 +7,11 @@ import com.weiwei.weiqi.request.property.LendListEnter;
 import com.weiwei.weiqi.request.property.LendSaveEnter;
 import com.weiwei.weiqi.response.base.GeneralResult;
 
-public interface PropertyLendService {
+public interface PropertySellService {
 
 	GeneralResult save(LendSaveEnter saveEnter, BaseEnter baseEnter);
 
 	GeneralResult list(MyPageRequest request, LendListEnter listEnter);
 
 	GeneralResult detail(LendDetailEnter detailEnter);
-
 }
