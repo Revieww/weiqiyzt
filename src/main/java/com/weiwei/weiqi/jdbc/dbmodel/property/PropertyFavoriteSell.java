@@ -33,7 +33,7 @@ public class PropertyFavoriteSell implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "property_sell_id")
-	private PropertyLend propertyLend;
+	private PropertySell propertySell;
 
 	// Constructors
 
@@ -65,13 +65,14 @@ public class PropertyFavoriteSell implements java.io.Serializable {
 		this.isCancelled = isCancelled;
 	}
 
-	public PropertyLend getPropertyLend() {
-		return propertyLend;
+	public PropertySell getPropertySell() {
+		return propertySell;
 	}
 
-	public void setPropertyLend(PropertyLend propertyLend) {
-		this.propertyLend = propertyLend;
+	public void setPropertySell(PropertySell propertySell) {
+		this.propertySell = propertySell;
 	}
+
 	
 	
 
